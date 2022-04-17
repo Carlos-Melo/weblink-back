@@ -12,9 +12,9 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
 	    Usuario findById(long id);
 
-		List<Usuario> findByEmail(String emailUsuario);
-
 		Usuario getOne(Long id);
+		
+		List<Usuario> findByEmail(String emailUsuario);
 		
 		List<Usuario> findByCpfCnpj(String cpfCnpjUsuario);
 }

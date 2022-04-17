@@ -63,12 +63,12 @@ public class UsuarioController {
 		
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<DetalhesDoUsuarioDto> detalhar(@PathVariable Long id) {
+	@GetMapping("/{cpfCnpj}")
+	public ResponseEntity<DetalhesDoUsuarioDto> detalhar(@PathVariable String cpfCnpj) {
 		
-		Optional<Usuario> usuario = usuarioRepository.findById(id);
-		if(usuario.isPresent()) {
-			return ResponseEntity.ok(new DetalhesDoUsuarioDto(usuario.get()));
+		List<Usuario> usuario = usuarioRepository.findByCpfCnpj(cpfCnpj);
+		if(!usuario.isEmpty()) {
+			return ResponseEntity.ok(new DetalhesDoUsuarioDto(usuario.get(0)));
 		}
 		return ResponseEntity.notFound().build();
 	}
